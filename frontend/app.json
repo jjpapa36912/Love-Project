@@ -1,0 +1,88 @@
+{
+  "expo": {
+    "name": "frontend",
+    "slug": "frontend",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "extra": {
+      "google": {
+        "expoClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
+        "iosClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
+        "androidClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
+        "webClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com"
+      },
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "831b74a4-8484-442c-8293-a3b5512c5b3a"
+      }
+    },
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png",
+      "config": {
+        "google": {
+          "clientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
+          "redirectUri": "https://auth.expo.io/@jjpapa36912/frontend"
+        }
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": [
+              "https://devrepo.kakao.com/nexus/content/groups/public/"
+            ]
+          }
+        }
+      ],
+      [
+        "@react-native-kakao/core",
+        {
+          "nativeAppKey": "64eb2c6693e4feffd396d4f51eaa6590",
+          "android": {
+            "authCodeHandlerActivity": true
+          },
+          "ios": {
+            "handleKakaoOpenUrl": true
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
