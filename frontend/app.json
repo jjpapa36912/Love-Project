@@ -8,6 +8,7 @@
       "android",
       "web"
     ],
+
     "extra": {
       "google": {
         "expoClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
@@ -36,16 +37,10 @@
         "backgroundColor": "#ffffff"
       }
     },
+
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png",
-      "config": {
-        "google": {
-          "clientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
-          "redirectUri": "https://auth.expo.io/@jjpapa36912/frontend"
-        }
-      }
+      "redirectUri": "https://auth.expo.io/@jjpapa36912/frontend"
     },
     "plugins": [
       "expo-router",

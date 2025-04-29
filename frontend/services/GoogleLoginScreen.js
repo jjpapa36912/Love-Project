@@ -7,8 +7,8 @@ export default function GoogleLoginScreen({ navigation }) {
 
   // 훅을 컴포넌트 내에서 호출
   const [request, response, promptAsync] = Google.useAuthRequest({
-    clientId: '314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com',
-    redirectUri: 'https://auth.expo.io/@jjpapa36912/frontend',
+    clientId: '314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com',// 웹에서 테스트할때는 유형이 웹어플리케이션으로 되어있는거 사용해야 함
+    redirectUri: 'http://localhost:8081/',//'https://auth.expo.io/@jjpapa36912/frontend', // 웹 용 리다이렉트 url 등록해야 함
     scopes: ['profile', 'email'],
     responseType: 'token',
   },{ useProxy: true });
