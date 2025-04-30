@@ -1,41 +1,40 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import * as AuthSession from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
+
+WebBrowser.maybeCompleteAuthSession();
 
 const NaverLoginScreen = () => {
-  const redirectUri = 'https://auth.expo.io/@jjpapa36912/frontend'//AuthSession.makeRedirectUri({ useProxy: true });
+  const redirectUri = 'https://auth.expo.io/@jjpapa36912/frontend'; // 실제 URI로 변경 필요
   const CLIENT_ID = 'loHCwroBGxHcKCmHERN2'; // 네이버 클라이언트 ID
-  const STATE = 'RANDOM_STATE_STRING'; // 임의의 상태 문자열
+  const STATE = 'RANDOM_STATE_STRING'; // 상태 문자열
 
-  // 네이버의 OAuth2.0 엔드포인트 정보
   const discovery = {
     authorizationEndpoint: 'https://nid.naver.com/oauth2.0/authorize',
     tokenEndpoint: 'https://nid.naver.com/oauth2.0/token',
   };
 
-  // AuthRequest 훅을 사용하여 요청을 처리
   const [request, response, promptAsync] = AuthSession.useAuthRequest(
-      {
-        clientId: CLIENT_ID,
-        redirectUri,
-        responseType: 'code', // 'code'는 authorization code grant 방식
-        scopes: ['name', 'email'], // 필요한 권한을 추가할 수 있습니다
-        state: STATE,
-      },
-      discovery
+    {
+      clientId: CLIENT_ID,
+      redirectUri,
+      responseType: 'code',
+      scopes: ['name', 'email'],
+      state: STATE,
+    },
+    discovery
   );
 
-  // 인증 후 처리
   const handleLogin = async () => {
     if (request) {
-      // 인증 요청 실행
       const result = await promptAsync();
-      console.log('result result, result:', result);
+      console.log('result:', result);
 
       if (result.type === 'success') {
         const { code } = result.params;
         console.log('인증 성공, code:', code);
-        // 이 code를 서버로 보내서 access_token을 요청
+        // 서버로 code 전송 후 토큰 교환
       } else {
         console.log('인증 실패:', result);
       }
@@ -43,46 +42,78 @@ const NaverLoginScreen = () => {
   };
 
   return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Image
-              // source={require('@/assets/images/naver_icon.png')}
-              style={styles.icon}
-          />
-          <Text style={styles.buttonText}>네이버로 로그인</Text>
-        </TouchableOpacity>
-      </View>
-  );
-};
+    <View style={styles.container}>
+      <Text style={styles.title}>Naver 로그인</Text>
 
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Image
+          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Naver_Logotype.svg' }}
+          style={styles.icon}
+        />
+        <Text style={styles.buttonText}>Sign in with Naver</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFF4B2',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    padding: 20,
   },
-  button: {
+  title: {
+    fontSize: 24,
+    marginBottom: 40,
+    color: 'brown',
+    fontWeight: 'bold',
+  },
+  loginButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1EC800',
-    paddingVertical: 12,
+    backgroundColor: '#FFF',
+    paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 10,
+    borderColor: '#FFD54F',
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
   },
   buttonText: {
     color: 'black',
+    fontWeight: '600',
     fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 10,
   },
-  icon: {
-    width: 25,
-    height: 25,
+  userBox: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 18,
+    color: 'brown',
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  email: {
+    fontSize: 14,
+    color: 'gray',
   },
 });
 
 export default NaverLoginScreen;
+
+
+
 
 
 // import React from 'react';
