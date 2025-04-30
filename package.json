@@ -2,6 +2,10 @@
   "name": "love",
   "version": "1.0.0",
   "dependencies": {
-    
+    "expo": "^52.0.46",
+    "@types/react": "~18.3.12"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
