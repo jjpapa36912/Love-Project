@@ -8,7 +8,6 @@
       "android",
       "web"
     ],
-
     "extra": {
       "google": {
         "expoClientId": "314078962985-2jhcvlliuo8h2412la694doaa8b9ghba.apps.googleusercontent.com",
@@ -29,7 +28,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.joyful.bless",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -37,7 +40,6 @@
         "backgroundColor": "#ffffff"
       }
     },
-
     "web": {
       "bundler": "metro",
       "redirectUri": "https://auth.expo.io/@jjpapa36912/frontend"
